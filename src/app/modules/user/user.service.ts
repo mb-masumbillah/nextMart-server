@@ -90,7 +90,7 @@ const myProfile = async (authUser: IJwtPayload) => {
 
 const updateProfile = async (
    payload: Partial<ICustomer>,
-   file: IImageFile,
+   // file: IImageFile,
    authUser: IJwtPayload
 ) => {
    const isUserExists = await User.findById(authUser.userId);
@@ -102,9 +102,9 @@ const updateProfile = async (
       throw new AppError(StatusCodes.BAD_REQUEST, "User is not active!");
    }
 
-   if (file && file.path) {
-      payload.photo = file.path;
-   }
+   // if (file && file.path) {
+   //    payload.photo = file.path;
+   // }
 
    const result = await Customer.findOneAndUpdate(
       { user: authUser.userId },

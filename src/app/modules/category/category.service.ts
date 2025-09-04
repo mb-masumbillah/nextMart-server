@@ -11,14 +11,14 @@ import { Product } from "../product/product.model";
 
 const createCategory = async (
   categoryData: Partial<ICategory>,
-  icon: IImageFile,
+  // icon: IImageFile,
   authUser: IJwtPayload
 ) => {
 
   const category = new Category({
     ...categoryData,
     createdBy: authUser.userId,
-    icon: icon?.path
+    // icon: icon?.path
   });
 
   const result = await category.save();
@@ -65,7 +65,7 @@ const getAllCategory = async (query: Record<string, unknown>) => {
 const updateCategoryIntoDB = async (
   id: string,
   payload: Partial<ICategory>,
-  file: IImageFile,
+  // file: IImageFile,
   authUser: IJwtPayload
 ) => {
   const isCategoryExist = await Category.findById(id);
@@ -77,9 +77,9 @@ const updateCategoryIntoDB = async (
     throw new AppError(StatusCodes.BAD_REQUEST, "You are not able to edit the category!")
   }
 
-  if (file && file.path) {
-    payload.icon = file.path
-  }
+  // if (file && file.path) {
+  //   payload.icon = file.path
+  // }
 
   const result = await Category.findByIdAndUpdate(
     id,
