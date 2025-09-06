@@ -41,10 +41,10 @@ const productSchema = new Schema<IProduct>(
          ref: 'Category',
          required: [true, 'Category is required'],
       },
-      imageUrls: {
-         type: [String],
-         required: [true, 'Product images are required'],
-      },
+      // imageUrls: {
+      //    type: [String],
+      //    required: [true, 'Product images are required'],
+      // },
       isActive: {
          type: Boolean,
          default: true,
