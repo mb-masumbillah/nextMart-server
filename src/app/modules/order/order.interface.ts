@@ -12,7 +12,7 @@ export interface IOrder extends Document {
   user: Types.ObjectId;
   shop: Types.ObjectId;
   products: IOrderProduct[];
-  coupon: Types.ObjectId | null;
+  coupon?: Types.ObjectId | null;
   totalAmount: number;
   discount: number;
   deliveryCharge: number;
