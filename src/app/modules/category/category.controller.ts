@@ -9,9 +9,11 @@ import { IJwtPayload } from '../auth/auth.interface';
 
 const createCategory = catchAsync(async (req: Request, res: Response) => {
 
+  console.log(req.file)
+
   const result = await CategoryService.createCategory(
     req.body,
-    // req.file as IImageFile,
+    req.file as IImageFile,
     req.user as IJwtPayload
   );
 
@@ -40,7 +42,7 @@ const updateCategory = catchAsync(async (req, res) => {
   const result = await CategoryService.updateCategoryIntoDB(
     id,
     req.body,
-    // req.file as IImageFile,
+    req.file as IImageFile,
     req.user as IJwtPayload
   );
 

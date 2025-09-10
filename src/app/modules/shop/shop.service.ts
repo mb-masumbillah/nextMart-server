@@ -9,7 +9,7 @@ import Shop from "./shop.model";
 
 const createShop = async (
   shopData: Partial<IShop>,
-  // logo: IImageFile,
+  logo: IImageFile,
   authUser: IJwtPayload
 ) => {
   const session = await mongoose.startSession();
@@ -27,9 +27,9 @@ const createShop = async (
       throw new AppError(StatusCodes.NOT_ACCEPTABLE, "User is not active!");
     }
 
-    // if (logo) {
-    //   shopData.logo = logo.path;
-    // }
+    if (logo) {
+      shopData.logo = logo.path;
+    }
 
     const shop = new Shop({
       ...shopData,

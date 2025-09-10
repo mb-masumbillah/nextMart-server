@@ -18,20 +18,20 @@ import { hasActiveShop } from '../../utils/hasActiveShop';
 
 const createProduct = async (
    productData: Partial<IProduct>,
-   // productImages: IImageFiles,
+   productImages: IImageFiles,
    authUser: IJwtPayload
 ) => {
    const shop = await hasActiveShop(authUser.userId);
 
-   // const { images } = productImages;
-   // if (!images || images.length === 0) {
-   //    throw new AppError(
-   //       StatusCodes.BAD_REQUEST,
-   //       'Product images are required.'
-   //    );
-   // }
+   const { images } = productImages;
+   if (!images || images.length === 0) {
+      throw new AppError(
+         StatusCodes.BAD_REQUEST,
+         'Product images are required.'
+      );
+   }
 
-   // productData.imageUrls = images.map((image) => image.path);
+   productData.imageUrls = images.map((image) => image.path);
 
    const isCategoryExists = await Category.findById(productData.category);
    if (!isCategoryExists) {
@@ -336,10 +336,10 @@ const getMyShopProducts = async (query: Record<string, unknown>, authUser: IJwtP
 const updateProduct = async (
    productId: string,
    payload: Partial<IProduct>,
-   // productImages: IImageFiles,
+   productImages: IImageFiles,
    authUser: IJwtPayload
 ) => {
-   // const { images } = productImages;
+   const { images } = productImages;
 
    const user = await User.findById(authUser.userId);
    const shop = await Shop.findOne({ user: user?._id });
@@ -361,9 +361,9 @@ const updateProduct = async (
       throw new AppError(StatusCodes.NOT_FOUND, 'Product Not Found');
    }
 
-   // if (images && images.length > 0) {
-   //    payload.imageUrls = images.map((image) => image.path);
-   // }
+   if (images && images.length > 0) {
+      payload.imageUrls = images.map((image) => image.path);
+   }
 
    return await Product.findByIdAndUpdate(productId, payload, { new: true });
 };

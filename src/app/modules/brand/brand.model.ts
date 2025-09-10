@@ -9,10 +9,10 @@ const brandSchema = new Schema<IBrand>(
       unique: true,
       trim: true,
     },
-    // logo: {
-    //   type: String,
-    //   required: [true, "Brand logo URL is required"],
-    // },
+    logo: {
+      type: String,
+      required: [true, "Brand logo URL is required"],
+    },
     isActive: {
       type: Boolean,
       default: true,

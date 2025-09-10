@@ -10,12 +10,12 @@ import { Product } from '../product/product.model';
 
 const createBrand = async (
    brandData: Partial<IBrand>,
-   // logo: IImageFile,
+   logo: IImageFile,
    authUser: IJwtPayload
 ) => {
-   // if (logo && logo.path) {
-   //    brandData.logo = logo.path;
-   // }
+   if (logo && logo.path) {
+      brandData.logo = logo.path;
+   }
 
    const brand = new Brand({
       ...brandData,
@@ -47,7 +47,7 @@ const getAllBrand = async (query: Record<string, unknown>) => {
 const updateBrandIntoDB = async (
    id: string,
    payload: Partial<IBrand>,
-   // file: IImageFile,
+   file: IImageFile,
    authUser: IJwtPayload
 ) => {
    const isBrandExist = await Brand.findById(id);
@@ -65,9 +65,9 @@ const updateBrandIntoDB = async (
       );
    }
 
-   // if (file && file.path) {
-   //    payload.logo = file.path;
-   // }
+   if (file && file.path) {
+      payload.logo = file.path;
+   }
 
    const result = await Brand.findByIdAndUpdate(id, payload, { new: true });
 

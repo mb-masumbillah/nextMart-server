@@ -9,7 +9,7 @@ export interface IProduct extends Document {
   weight: number | null;
   offerPrice?: number | null;
   category: Types.ObjectId;
-  // imageUrls: string[];
+  imageUrls: string[];
   isActive: boolean;
   shop: Types.ObjectId;
   brand: Types.ObjectId;

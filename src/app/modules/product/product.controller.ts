@@ -9,7 +9,7 @@ import { StatusCodes } from "http-status-codes";
 const createProduct = catchAsync(async (req: Request, res: Response) => {
   const result = await ProductService.createProduct(
     req.body,
-    // req.files as IImageFiles,
+    req.files as IImageFiles,
     req.user as IJwtPayload
   );
 
@@ -81,7 +81,7 @@ const updateProduct = catchAsync(async (req, res) => {
   const result = await ProductService.updateProduct(
     productId,
     payload,
-    // req.files as IImageFiles,
+    req.files as IImageFiles,
     user as IJwtPayload
   );
 
